@@ -1,1 +1,9 @@
 ---
+- name:  Install docker
+  apt:   pkg=docker.io state=present
+  sudo:  yes
+- name:      Restart docker
+  service:   name=docker.io state=restarted
+  sudo:      yes
+  register:  restart_docker
+- debug:     var=restart_docker

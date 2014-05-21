@@ -1,0 +1,3 @@
+$template LogglyFormat,"<%pri%>%protocol-version% %timestamp:::date-rfc3339% %HOSTNAME% %app-name% %procid% %msgid% [{{ logging.loggly.token }}@41058 tag=\"TAG\"] %msg%\n"
+
+*.* @@{{ logging.loggly.domain }}:{{ logging.loggly.port }};LogglyFormat

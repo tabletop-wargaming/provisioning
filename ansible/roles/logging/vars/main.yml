@@ -1,5 +1,27 @@
 ---
-papertrailapp:
-  cert:
-    name: syslog.papertrail.crt
-    dest: '/etc/ssl/certs'
+logging:
+  loggly:
+    tag:     webservers
+    domain:  logs-01.loggly.com
+    port:    514
+  rsyslog:
+    dir:   /etc/rsyslog.d
+  papertrailapp:
+    domain:  logs.papertrailapp.com
+    port:    24513
+    cert:
+      name: syslog.papertrail.crt
+      path: '/etc/ssl/certs/syslog.papertrail.crt'
+    config:
+      ActionResumeInterval:            10
+      ActionQueueSize:                 100000
+      ActionQueueDiscardMark:          97500
+      ActionQueueHighWaterMark:        80000
+      ActionQueueType:                 LinkedList
+      ActionQueueFileName:             papertrailqueue
+      ActionQueueCheckpointInterval:   100
+      ActionQueueMaxDiskSpace:         2g
+      ActionResumeRetryCount:          -1
+      ActionQueueSaveOnShutdown:       on
+      ActionQueueTimeoutEnqueue:       10
+      ActionQueueDiscardSeverity:      0

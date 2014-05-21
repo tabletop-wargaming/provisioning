@@ -1,2 +1,18 @@
 ---
-- include: papertrailapp.yml
+- name:      Install tools to ensure logging will work.
+  apt:       pkg={{item}} state=present update_cache=yes
+  sudo:      yes
+  with_items:
+    - rsyslog
+    - rsyslog-gnutls
+
+#- name:      "Create the rsyslog.d folder if it doesn't exist"
+#  file:      path={{logging.rsyslog.dir}}  state=directory owner=root group=root mode=0750
+#  sudo:      yes
+- include:   papertrailapp.yml
+#- include: loggly.yml
+- name:      Restart rsyslog
+  service:   name=rsyslog state=restarted
+  sudo:      yes
+  register:  restart_rsyslog
+- debug:     var=restart_rsyslog

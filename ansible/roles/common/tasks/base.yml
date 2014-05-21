@@ -1,0 +1,28 @@
+---
+- name:             Upgrade existing packages
+  sudo:             true
+  apt:              upgrade=dist update_cache=yes
+- name:             Install base packages
+  sudo:             yes
+  apt:              pkg={{ item }} state=present
+  with_items:
+    - sudo                 # Hopefully redundant
+    - bash                 # As is this
+    - bash-completion      # Useful
+    - coreutils            # Essential
+    - findutils            # Sanity-saving
+    - keyutils
+    - realpath
+    - git
+    - spark
+    - resolvconf
+    - screen
+    - gnupg
+    - curl
+    - wget
+    - ntp
+    - netcat
+    - tree
+    - gawk
+    - mosh
+    - openssl

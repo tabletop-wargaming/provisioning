@@ -1,0 +1,11 @@
+$DefaultNetstreamDriverCAFile {{ logging.papertrailapp.cert.path }} # trust these CAs
+$ActionSendStreamDriver gtls # use gtls netstream driver
+$ActionSendStreamDriverMode 1 # require TLS
+$ActionSendStreamDriverAuthMode x509/name # authenticate by hostname
+
+
+{% for key, value in logging.papertrailapp.config.iteritems() %}
+${{ key }} {{ value }}
+{% endfor %}
+
+*.*          @@{{ logging.papertrailapp.domain }}:{{ logging.papertrailapp.port }}

@@ -1,10 +1,8 @@
 ---
-- name:     Install tools to ensure papertrail will work.
-  apt:      pkg={{item}} state=present update_cache=yes
-  sudo:     yes
-  with_items:
-    - rsyslog
-    - rsyslog-gnutls
-- name:     Install the cert into the certs directory
-  copy:     src={{ papertrailapp.cert.name }} dest={{ papertrailapp.cert.dest}} owner=root group=root mode=400
-  sudo:     yes
+- name:      "Install the cert into the certs directory"
+  copy:      src={{ logging.papertrailapp.cert.name }} dest={{ logging.papertrailapp.cert.path}} owner=root group=root mode=0644
+  sudo:      yes
+
+- name:      "Copy the template to the rsyslog.d dir"
+  template:  src=papertrailapp.rsyslog.conf.j2 dest={{ logging.rsyslog.dir }}/999-papertraillapp.rsyslog.conf owner=root group=root mode=0644
+  sudo:      yes

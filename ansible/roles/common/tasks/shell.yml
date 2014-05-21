@@ -1,0 +1,6 @@
+---
+- name:            Install zsh
+  sudo:            true
+  apt:             pkg=zsh update_cache=yes
+- name:            Change root shell to zsh
+  command:         'chsh -s $(which zsh)''
