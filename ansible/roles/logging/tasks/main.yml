@@ -5,10 +5,9 @@
   with_items:
     - rsyslog
     - rsyslog-gnutls
+- name: Change the kernel.hostname
+  sysctl: name=kernel.hostname value="webserver-{{hostname}}" present=yes
 
-#- name:      "Create the rsyslog.d folder if it doesn't exist"
-#  file:      path={{logging.rsyslog.dir}}  state=directory owner=root group=root mode=0750
-#  sudo:      yes
 - include:   papertrailapp.yml
 #- include: loggly.yml
 - name:      Restart rsyslog

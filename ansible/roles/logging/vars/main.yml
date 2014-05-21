@@ -1,11 +1,11 @@
 ---
 logging:
+  rsyslog:
+    dir:   /etc/rsyslog.d
   loggly:
     tag:     webservers
     domain:  logs-01.loggly.com
     port:    514
-  rsyslog:
-    dir:   /etc/rsyslog.d
   papertrailapp:
     domain:  logs.papertrailapp.com
     port:    24513
