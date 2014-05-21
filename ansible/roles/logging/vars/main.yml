@@ -1,0 +1,5 @@
+---
+papertrailapp:
+  cert:
+    name: syslog.papertrail.crt
+    dest: '/etc/ssl/certs'

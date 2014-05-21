@@ -1,0 +1,22 @@
+{
+  "builders": [
+    {
+      "type": "amazon-ebs",
+      "region": "us-east-1",
+      "source_ami": "ami-eccc2484",
+      "instance_type": "t1.micro",
+      "ssh_username": "ubuntu",
+      "ami_name": "webserver - {{timestamp}}"
+    }
+  ],
+
+  "provisioners": [
+    {
+      "type":           "ansible-local",
+      "playbook_file":  "ansible/webservers.yml",
+      "role_paths":     [
+        "ansible/roles/logging"
+      ]
+    }
+  ]
+}

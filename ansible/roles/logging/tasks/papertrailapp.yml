@@ -1,0 +1,10 @@
+---
+- name:     Install tools to ensure papertrail will work.
+  apt:      pkg={{item}} state=present update_cache=yes
+  sudo:     yes
+  with_items:
+    - rsyslog
+    - rsyslog-gnutls
+- name:     Install the cert into the certs directory
+  copy:     src={{ papertrailapp.cert.name }} dest={{ papertrailapp.cert.dest}} owner=root group=root mode=400
+  sudo:     yes
